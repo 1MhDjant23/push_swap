@@ -1,38 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swaping.c                                          :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mait-taj <mait-taj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 15:18:01 by mait-taj          #+#    #+#             */
-/*   Updated: 2024/05/10 22:15:22 by mait-taj         ###   ########.fr       */
+/*   Created: 2023/12/24 12:57:58 by mait-taj          #+#    #+#             */
+/*   Updated: 2023/12/25 22:05:00 by mait-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	swap(t_push *head)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	int	temp;
+	unsigned int	i;
+	int				len;
+	char			*c_mapi;
 
-	temp = head->data;
-	head->data = head->next->data;
-	head->next->data = temp;
-}
-
-void	_sa(t_push *lst)
-{
-	if (lst == NULL || lst->next == NULL)
-		return ;
-	swap(lst);
-	write(1, "sa\n", 3);
-}
-
-void	_sb(t_push *lst)
-{
-	if (lst == NULL || lst->next == NULL)
-		return ;
-	swap(lst);
-	write(1, "sb\n", 3);
+	len = ft_strlen(s);
+	c_mapi = (char *)malloc((len + 1) * sizeof(char));
+	if (c_mapi == NULL)
+		return (NULL);
+	i = 0;
+	while (s[i])
+	{
+		c_mapi[i] = (*f)(i, s[i]);
+		i++;
+	}
+	c_mapi[i] = '\0';
+	return (c_mapi);
 }

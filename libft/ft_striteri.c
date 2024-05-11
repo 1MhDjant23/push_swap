@@ -1,38 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swaping.c                                          :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mait-taj <mait-taj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 15:18:01 by mait-taj          #+#    #+#             */
-/*   Updated: 2024/05/10 22:15:22 by mait-taj         ###   ########.fr       */
+/*   Created: 2023/12/25 11:45:16 by mait-taj          #+#    #+#             */
+/*   Updated: 2024/01/07 13:14:15 by mait-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	swap(t_push *head)
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	int	temp;
+	unsigned int	i;
 
-	temp = head->data;
-	head->data = head->next->data;
-	head->next->data = temp;
-}
-
-void	_sa(t_push *lst)
-{
-	if (lst == NULL || lst->next == NULL)
-		return ;
-	swap(lst);
-	write(1, "sa\n", 3);
-}
-
-void	_sb(t_push *lst)
-{
-	if (lst == NULL || lst->next == NULL)
-		return ;
-	swap(lst);
-	write(1, "sb\n", 3);
+	i = 0;
+	while (s[i])
+	{
+		(f)(i, &s[i]);
+		i++;
+	}
 }

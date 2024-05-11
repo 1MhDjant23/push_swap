@@ -1,40 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   func_for_free.c                                    :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mait-taj <mait-taj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/10 15:12:20 by mait-taj          #+#    #+#             */
-/*   Updated: 2024/05/10 22:45:43 by mait-taj         ###   ########.fr       */
+/*   Created: 2023/12/16 15:31:31 by mait-taj          #+#    #+#             */
+/*   Updated: 2024/01/13 18:22:25 by mait-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	free_arg(char **str)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	int	i;
+	char	*after_trim;
+	size_t	j;
+	size_t	i;
 
+	if (s1 == NULL || set == NULL)
+		return (NULL);
 	i = 0;
-	while (str[i])
+	j = ft_strlen(s1);
+	if (s1[i] == '\0')
 	{
-		free(str[i]);
+		return (ft_strdup(""));
+	}
+	while (ft_strrchr(set, s1[i]))
+	{
 		i++;
 	}
-	free(str);
-}
-
-void	free_list(t_push **lst)
-{
-	t_push	*temp;
-
-	if (!lst)
-		return ;
-	while (*lst)
+	while (ft_strrchr(set, s1[j]))
 	{
-		temp = *lst;
-		*lst = (*lst)->next;
-		free(temp);
+		j--;
 	}
+	after_trim = ft_substr(s1, i, j - i + 1);
+	if (after_trim == NULL)
+		return (NULL);
+	return (after_trim);
 }

@@ -1,38 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swaping.c                                          :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mait-taj <mait-taj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 15:18:01 by mait-taj          #+#    #+#             */
-/*   Updated: 2024/05/10 22:15:22 by mait-taj         ###   ########.fr       */
+/*   Created: 2023/12/25 15:27:54 by mait-taj          #+#    #+#             */
+/*   Updated: 2023/12/25 18:08:03 by mait-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	swap(t_push *head)
+void	ft_putnbr_fd(int n, int fd)
 {
-	int	temp;
+	char	digit;
 
-	temp = head->data;
-	head->data = head->next->data;
-	head->next->data = temp;
-}
-
-void	_sa(t_push *lst)
-{
-	if (lst == NULL || lst->next == NULL)
+	if (n == (-2147483648))
+	{
+		write(fd, "-2147483648", 11);
 		return ;
-	swap(lst);
-	write(1, "sa\n", 3);
-}
-
-void	_sb(t_push *lst)
-{
-	if (lst == NULL || lst->next == NULL)
-		return ;
-	swap(lst);
-	write(1, "sb\n", 3);
+	}
+	if (n < 0)
+	{
+		write(fd, "-", 1);
+		n = -n;
+	}
+	if (n >= 10)
+	{
+		ft_putnbr_fd(n / 10, fd);
+	}
+	digit = '0' + (n % 10);
+	write(fd, &digit, 1);
 }

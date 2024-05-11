@@ -1,38 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swaping.c                                          :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mait-taj <mait-taj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 15:18:01 by mait-taj          #+#    #+#             */
-/*   Updated: 2024/05/10 22:15:22 by mait-taj         ###   ########.fr       */
+/*   Created: 2023/12/14 00:01:49 by mait-taj          #+#    #+#             */
+/*   Updated: 2024/01/07 11:33:08 by mait-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	swap(t_push *head)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	int	temp;
+	unsigned char	*str;
+	unsigned char	ch;
+	size_t			i;
 
-	temp = head->data;
-	head->data = head->next->data;
-	head->next->data = temp;
-}
-
-void	_sa(t_push *lst)
-{
-	if (lst == NULL || lst->next == NULL)
-		return ;
-	swap(lst);
-	write(1, "sa\n", 3);
-}
-
-void	_sb(t_push *lst)
-{
-	if (lst == NULL || lst->next == NULL)
-		return ;
-	swap(lst);
-	write(1, "sb\n", 3);
+	i = 0;
+	str = (unsigned char *)s;
+	ch = (unsigned char)c;
+	while (i < n)
+	{
+		if (str[i] == ch)
+		{
+			return ((void *)&str[i]);
+		}
+		i++;
+	}
+	return (NULL);
 }

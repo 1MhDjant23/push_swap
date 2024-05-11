@@ -1,38 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swaping.c                                          :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mait-taj <mait-taj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 15:18:01 by mait-taj          #+#    #+#             */
-/*   Updated: 2024/05/10 22:15:22 by mait-taj         ###   ########.fr       */
+/*   Created: 2023/12/06 12:22:39 by mait-taj          #+#    #+#             */
+/*   Updated: 2024/01/07 11:52:45 by mait-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	swap(t_push *head)
+char	*ft_strchr(const char *s, int c)
 {
-	int	temp;
+	int		i;
+	char	ch;
 
-	temp = head->data;
-	head->data = head->next->data;
-	head->next->data = temp;
-}
-
-void	_sa(t_push *lst)
-{
-	if (lst == NULL || lst->next == NULL)
-		return ;
-	swap(lst);
-	write(1, "sa\n", 3);
-}
-
-void	_sb(t_push *lst)
-{
-	if (lst == NULL || lst->next == NULL)
-		return ;
-	swap(lst);
-	write(1, "sb\n", 3);
+	i = 0;
+	ch = (char) c;
+	while (s[i] != '\0')
+	{
+		if (s[i] == ch)
+		{
+			return ((char *)&s[i]);
+		}
+		i++;
+	}
+	if (s[i] != ch)
+	{
+		return (NULL);
+	}
+	return ((char *)&s[i]);
 }

@@ -1,38 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swaping.c                                          :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mait-taj <mait-taj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/16 15:18:01 by mait-taj          #+#    #+#             */
-/*   Updated: 2024/05/10 22:15:22 by mait-taj         ###   ########.fr       */
+/*   Created: 2023/12/09 10:25:07 by mait-taj          #+#    #+#             */
+/*   Updated: 2024/01/06 11:34:37 by mait-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	swap(t_push *head)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	int	temp;
+	char	*d;
+	char	*s;
 
-	temp = head->data;
-	head->data = head->next->data;
-	head->next->data = temp;
-}
-
-void	_sa(t_push *lst)
-{
-	if (lst == NULL || lst->next == NULL)
-		return ;
-	swap(lst);
-	write(1, "sa\n", 3);
-}
-
-void	_sb(t_push *lst)
-{
-	if (lst == NULL || lst->next == NULL)
-		return ;
-	swap(lst);
-	write(1, "sb\n", 3);
+	if (dst == NULL && src == NULL)
+	{
+		return (NULL);
+	}
+	d = (char *) dst;
+	s = (char *) src;
+	if (d > s)
+	{
+		while (len > 0)
+		{
+			len--;
+			d[len] = s[len];
+		}
+	}
+	else
+	{
+		ft_memcpy(d, s, len);
+	}
+	return (dst);
 }

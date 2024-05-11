@@ -1,40 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   func_for_free.c                                    :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mait-taj <mait-taj@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/10 15:12:20 by mait-taj          #+#    #+#             */
-/*   Updated: 2024/05/10 22:45:43 by mait-taj         ###   ########.fr       */
+/*   Created: 2023/12/14 01:48:42 by mait-taj          #+#    #+#             */
+/*   Updated: 2024/01/07 13:45:38 by mait-taj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	free_arg(char **str)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	int	i;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
-	while (str[i])
+	if (len == 0 && needle && !haystack)
+		return (NULL);
+	if (needle[i] == '\0')
 	{
-		free(str[i]);
+		return ((char *)&haystack[i]);
+	}
+	while (haystack[i])
+	{
+		j = 0;
+		while (haystack[i + j] == needle[j] && j + i < len)
+		{
+			if (needle[j + 1] == '\0')
+			{
+				return ((char *)&haystack[i]);
+			}
+			j++;
+		}
 		i++;
 	}
-	free(str);
-}
-
-void	free_list(t_push **lst)
-{
-	t_push	*temp;
-
-	if (!lst)
-		return ;
-	while (*lst)
-	{
-		temp = *lst;
-		*lst = (*lst)->next;
-		free(temp);
-	}
+	return (NULL);
 }
